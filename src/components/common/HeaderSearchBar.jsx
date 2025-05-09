@@ -10,6 +10,7 @@ function HeaderSearchBar() {
     habitat: null,
     food: null,
     eggCount: null,
+    victoryPoints: null,
   });
   const { setCardResults } = useContext(CardsContext);
 
@@ -75,6 +76,45 @@ function HeaderSearchBar() {
     },
   ];
 
+  const victoryPoints = [
+    {
+      value: "0",
+      label: "0",
+    },
+    {
+      value: "1",
+      label: "1",
+    },
+    {
+      value: "2",
+      label: "2",
+    },
+    {
+      value: "3",
+      label: "3",
+    },
+    {
+      value: "4",
+      label: "4",
+    },
+    {
+      value: "5",
+      label: "5",
+    },
+    {
+      value: "6",
+      label: "6",
+    },
+    {
+      value: "7",
+      label: "7",
+    },
+    {
+      value: "8",
+      label: "8",
+    },
+  ];
+
   useEffect(() => {
     searchBirdsByName();
   }, [searchText, filters]);
@@ -102,6 +142,9 @@ function HeaderSearchBar() {
       }
       if (filters.eggCount) {
         searchQuery = searchQuery.eq("egg_count", filters.eggCount);
+      }
+      if (filters.victoryPoints) {
+        searchQuery = searchQuery.eq("victory_points", filters.victoryPoints);
       }
 
       const { data, error } = await searchQuery;
@@ -139,6 +182,12 @@ function HeaderSearchBar() {
         options={eggCount}
         title="Egg Count"
         onChange={(value) => handleFilterChange("eggCount", value)}
+      />
+
+      <ComboBoxResponsive
+        options={victoryPoints}
+        title="Victory Points"
+        onChange={(value) => handleFilterChange("victoryPoints", value)}
       />
     </>
   );

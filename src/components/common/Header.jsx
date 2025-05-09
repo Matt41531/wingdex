@@ -1,4 +1,3 @@
-import { SidebarTrigger } from "@/components/ui/sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -21,7 +20,6 @@ function Header() {
   return (
     <header className="flex items-center justify-between w-full h-16 bg-sidebar p-4">
       <div className="flex items-center justify-center">
-        <SidebarTrigger />
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -42,11 +40,9 @@ function Header() {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      {path === "/cards" && (
-        <div className="flex flex-1 items-center justify-center max-w-1/2">
-          <HeaderSearchBar />
-        </div>
-      )}
+      <div className="flex flex-1 items-center justify-center max-w-1/2">
+        <HeaderSearchBar />
+      </div>
     </header>
   );
 }

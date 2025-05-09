@@ -43,7 +43,7 @@ export function ComboBoxResponsive({ options, title, onChange }) {
             variant="outline"
             className="w-1/6 justify-start bg-background text-foreground m-2"
           >
-            {selectedStatus ? <>{selectedStatus.label}</> : <>+ Set {title}</>}
+            {selectedStatus ? <>{selectedStatus.label}</> : <>+ {title}</>}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-full p-0" align="start">
