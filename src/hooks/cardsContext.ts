@@ -1,9 +1,14 @@
 import { createContext } from "react";
+import { Card } from "@/types/card";
 
 export const CardsContext = createContext<{
-  cardResults: any,
-  setCardResults: (cardResults: any) => void,
+  cardResults: Card[],
+  setCardResults: (cardResults: Card[]) => void,
+  selectedCard: Card | null,
+  setSelectedCard: (card: Card | null) => void,
 }>({
-  cardResults: undefined,
+  cardResults: [],
   setCardResults: () => {},
+  selectedCard: null,
+  setSelectedCard: () => {},
 });
