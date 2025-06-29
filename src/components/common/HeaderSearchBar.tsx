@@ -4,9 +4,22 @@ import { useState, useEffect, useContext } from "react";
 import { ComboBoxResponsive } from "../ui/combobox";
 import { CardsContext } from "@/hooks/cardsContext";
 
+type DropdownOption = {
+  value: string,
+  label: string,
+}
+
+type Filter = {
+  habitat: string | null,
+  food: string | null,
+  eggCount: string | null,
+  victoryPoints: string | null,
+}
+
+
 function HeaderSearchBar() {
   const [searchText, setSearchText] = useState("");
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<Filter>({
     habitat: null,
     food: null,
     eggCount: null,
@@ -15,7 +28,7 @@ function HeaderSearchBar() {
   const { setCardResults } = useContext(CardsContext);
 
   //TO-DO: Make this dynamic with DB tables or at least moving to a constants file
-  const habitat = [
+  const habitat: DropdownOption[] = [
     {
       value: "forest",
       label: "Forest",
@@ -30,7 +43,7 @@ function HeaderSearchBar() {
     },
   ];
 
-  const food = [
+  const food: DropdownOption[] = [
     {
       value: "worm",
       label: "Worm",
@@ -49,7 +62,7 @@ function HeaderSearchBar() {
     },
   ];
 
-  const eggCount = [
+  const eggCount: DropdownOption[] = [
     {
       value: "1",
       label: "1",
@@ -76,7 +89,7 @@ function HeaderSearchBar() {
     },
   ];
 
-  const victoryPoints = [
+  const victoryPoints: DropdownOption[] = [
     {
       value: "0",
       label: "0",
@@ -119,7 +132,7 @@ function HeaderSearchBar() {
     searchBirdsByName();
   }, [searchText, filters]);
 
-  function handleFilterChange(type, value) {
+  function handleFilterChange(type: string, value: string) {
     console.log("Filter: ", type, value);
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -165,29 +178,29 @@ function HeaderSearchBar() {
         type="search"
         placeholder="Search birds..."
         value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value)}
       />
 
       <ComboBoxResponsive
         options={habitat}
         title="Habitat"
-        onChange={(value) => handleFilterChange("habitat", value)}
+        onChange={(value: string) => handleFilterChange("habitat", value)}
       />
       <ComboBoxResponsive
         options={food}
         title="Food"
-        onChange={(value) => handleFilterChange("food", value)}
+        onChange={(value: string) => handleFilterChange("food", value)}
       />
       <ComboBoxResponsive
         options={eggCount}
         title="Egg Count"
-        onChange={(value) => handleFilterChange("eggCount", value)}
+        onChange={(value: string) => handleFilterChange("eggCount", value)}
       />
 
       <ComboBoxResponsive
         options={victoryPoints}
         title="Victory Points"
-        onChange={(value) => handleFilterChange("victoryPoints", value)}
+        onChange={(value: string) => handleFilterChange("victoryPoints", value)}
       />
     </>
   );

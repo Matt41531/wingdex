@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { CardsContext } from "@/hooks/cardsContext";
-import TransformedImage from "@/components/common/TransformedImage";
+// import TransformedImage from "@/components/common/TransformedImage";
 
 function Cards() {
   const { cardResults } = useContext(CardsContext);
@@ -14,13 +14,12 @@ function Cards() {
               className="aspect-[240/336] w-[240px] mx-auto" 
               key={card.id}
             >
-              <TransformedImage
+              <img
                 src={card.img_url}
                 alt={card.name}
                 width={240}
                 height={336}
                 className="w-full h-full hover:scale-110 transition object-cover"
-                quality={85}
               />
             </div>
           ))}

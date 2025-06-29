@@ -1,5 +1,14 @@
-import PropTypes from "prop-types";
 import { getTransformedImageUrl, parseSupabaseUrl } from "../../../utils/imageTransform";
+
+type TransformedImageProps = {
+  src:string,
+  alt:string,
+  width:number,
+  height:number,
+  className:string,
+  quality:number,
+  resize:'cover' | 'contain' | 'fill',
+}
 
 function TransformedImage({
   src,
@@ -9,7 +18,7 @@ function TransformedImage({
   className,
   quality = 80,
   resize = "cover",
-}) {
+}: TransformedImageProps) {
   // If src is not a Supabase URL, return regular image
   if (!src || !src.includes("supabase.co")) {
     return (
@@ -55,15 +64,5 @@ function TransformedImage({
     />
   );
 }
-
-TransformedImage.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
-  className: PropTypes.string,
-  quality: PropTypes.number,
-  resize: PropTypes.oneOf(["cover", "contain", "fill"]),
-};
 
 export default TransformedImage; 

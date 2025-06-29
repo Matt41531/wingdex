@@ -11,7 +11,7 @@ import { useEffect, useState, Fragment } from "react";
 import HeaderSearchBar from "./HeaderSearchBar";
 function Header() {
   const path = useLocation().pathname;
-  const [breadcrumbs, setBreadcrumbs] = useState([]);
+  const [breadcrumbs, setBreadcrumbs] = useState<string[]>([]);
 
   useEffect(() => {
     setBreadcrumbs(path.split("/").filter((breadcrumb) => breadcrumb !== ""));
