@@ -3,10 +3,11 @@ import Footer from "@/components/common/Footer";
 import { useEffect, useState } from "react";
 import { CardsContext } from "@/hooks/cardsContext";
 import Cards from "@/pages/Cards";
+import { Card } from "@/types/card";
 
 function Base() {
   const [mounted, setMounted] = useState(false);
-  const [cardResults, setCardResults] = useState(undefined);
+  const [cardResults, setCardResults] = useState<Card[]>([]);
 
   useEffect(() => {
     setMounted(true);
@@ -15,7 +16,7 @@ function Base() {
   if (!mounted) return null;
   return (
       <div className="flex flex-col items-center justify-center h-screen w-full">
-        <CardsContext.Provider value={{ cardResults, setCardResults }}>
+        <CardsContext.Provider value={{ cardResults, setCardResults, selectedCard: null, setSelectedCard: () => {} }}>
           <Header />
             <Cards />
           <Footer />
