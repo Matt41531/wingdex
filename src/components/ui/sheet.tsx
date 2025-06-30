@@ -2,24 +2,32 @@ import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { ComponentPropsWithoutRef } from "react";
 
-function Sheet({ ...props }) {
+type SheetGenericProps = ComponentPropsWithoutRef<"div">;
+interface SheetContentProps extends SheetPrimitive.DialogContentProps {
+  side: "left" | "right" | "top" | "bottom";
+}
+function Sheet({ ...props }: SheetPrimitive.DialogProps) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
 }
 
-function SheetTrigger({ ...props }) {
+function SheetTrigger({ ...props }: SheetPrimitive.DialogProps) {
   return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
 }
 
-function SheetClose({ ...props }) {
+function SheetClose({ ...props }: SheetPrimitive.DialogProps) {
   return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 }
 
-function SheetPortal({ ...props }) {
+function SheetPortal({ ...props }: SheetPrimitive.DialogProps) {
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;
 }
 
-function SheetOverlay({ className, ...props }) {
+function SheetOverlay({
+  className,
+  ...props
+}: SheetPrimitive.DialogOverlayProps) {
   return (
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
@@ -32,7 +40,12 @@ function SheetOverlay({ className, ...props }) {
   );
 }
 
-function SheetContent({ className, children, side = "right", ...props }) {
+function SheetContent({
+  className,
+  children,
+  side = "right",
+  ...props
+}: SheetContentProps) {
   return (
     <SheetPortal>
       <SheetOverlay />
@@ -62,7 +75,7 @@ function SheetContent({ className, children, side = "right", ...props }) {
   );
 }
 
-function SheetHeader({ className, ...props }) {
+function SheetHeader({ className, ...props }: SheetGenericProps) {
   return (
     <div
       data-slot="sheet-header"
@@ -72,7 +85,7 @@ function SheetHeader({ className, ...props }) {
   );
 }
 
-function SheetFooter({ className, ...props }) {
+function SheetFooter({ className, ...props }: SheetGenericProps) {
   return (
     <div
       data-slot="sheet-footer"
@@ -82,7 +95,7 @@ function SheetFooter({ className, ...props }) {
   );
 }
 
-function SheetTitle({ className, ...props }) {
+function SheetTitle({ className, ...props }: SheetPrimitive.DialogTitleProps) {
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"
@@ -92,7 +105,10 @@ function SheetTitle({ className, ...props }) {
   );
 }
 
-function SheetDescription({ className, ...props }) {
+function SheetDescription({
+  className,
+  ...props
+}: SheetPrimitive.DialogDescriptionProps) {
   return (
     <SheetPrimitive.Description
       data-slot="sheet-description"
