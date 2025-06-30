@@ -1,13 +1,6 @@
 import * as SwitchPrimitive from "@radix-ui/react-switch";
-
+import { SwitchProps } from "@radix-ui/react-switch";
 import { cn } from "@/lib/utils";
-
-type SwitchProps = {
-  className?: string,
-  id?: string,
-  checked?: boolean,
-  onCheckedChange?: (checked: boolean) => void,
-};
 
 function Switch({ className, ...props }: SwitchProps) {
   return (

@@ -2,35 +2,37 @@ import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { ComponentPropsWithoutRef } from "react";
 
+type DialogGenericProps = ComponentPropsWithoutRef<"div">;
 function Dialog({
   ...props
-}) {
+}: DialogPrimitive.DialogProps) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
 }
 
 function DialogTrigger({
   ...props
-}) {
+}: DialogPrimitive.DialogTriggerProps) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
 }
 
 function DialogPortal({
   ...props
-}) {
+}: DialogPrimitive.DialogPortalProps) {
   return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
 }
 
 function DialogClose({
   ...props
-}) {
+}: DialogPrimitive.DialogCloseProps) {
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;
 }
 
 function DialogOverlay({
   className,
   ...props
-}) {
+}: DialogPrimitive.DialogOverlayProps) {
   return (
     (<DialogPrimitive.Overlay
       data-slot="dialog-overlay"
@@ -46,7 +48,7 @@ function DialogContent({
   className,
   children,
   ...props
-}) {
+}: DialogPrimitive.DialogContentProps) {
   return (
     (<DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
@@ -71,7 +73,7 @@ function DialogContent({
 function DialogHeader({
   className,
   ...props
-}) {
+}: DialogGenericProps) {
   return (
     (<div
       data-slot="dialog-header"
@@ -83,7 +85,7 @@ function DialogHeader({
 function DialogFooter({
   className,
   ...props
-}) {
+}: DialogGenericProps) {
   return (
     (<div
       data-slot="dialog-footer"
@@ -95,7 +97,7 @@ function DialogFooter({
 function DialogTitle({
   className,
   ...props
-}) {
+}: DialogPrimitive.DialogTitleProps) {
   return (
     (<DialogPrimitive.Title
       data-slot="dialog-title"
@@ -107,7 +109,7 @@ function DialogTitle({
 function DialogDescription({
   className,
   ...props
-}) {
+}: DialogPrimitive.DialogDescriptionProps) {
   return (
     (<DialogPrimitive.Description
       data-slot="dialog-description"
