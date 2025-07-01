@@ -22,12 +22,26 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export function ComboBoxResponsive({ options, title, onChange }) {
+interface ComboBoxResponsiveProps {
+  options: { value: string; label: string }[];
+  title: string;
+  onChange: (value: string | null) => void;
+}
+
+interface StatusListProps {
+  selectedStatus: { value: string; label: string } | null;
+  options: { value: string; label: string }[];
+  onSelect: (value: string) => void;
+  setOpen: (open: boolean) => void;
+  setSelectedStatus: (selectedStatus: { value: string; label: string } | null) => void;
+}
+
+export function ComboBoxResponsive({ options, title, onChange }: ComboBoxResponsiveProps) {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
-  const [selectedStatus, setSelectedStatus] = useState(null);
+  const [selectedStatus, setSelectedStatus] = useState<{ value: string; label: string } | null>(null);
 
-  const handleSelect = (value) => {
+  const handleSelect = (value: string) => {
     const isCurrentlySelected = selectedStatus?.value === value;
     const newStatus = isCurrentlySelected ? null : options.find((selection) => selection.value === value) || null;
     setSelectedStatus(newStatus);
@@ -90,7 +104,7 @@ export function ComboBoxResponsive({ options, title, onChange }) {
   );
 }
 
-function StatusList({ selectedStatus, options, onSelect }) {
+function StatusList({ selectedStatus, options, onSelect }: StatusListProps) {
   return (
     <Command>
       <CommandInput placeholder="Filter status..." />
