@@ -11,11 +11,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import {
   Popover,
   PopoverContent,
@@ -33,17 +29,28 @@ interface StatusListProps {
   options: { value: string; label: string }[];
   onSelect: (value: string) => void;
   setOpen: (open: boolean) => void;
-  setSelectedStatus: (selectedStatus: { value: string; label: string } | null) => void;
+  setSelectedStatus: (
+    selectedStatus: { value: string; label: string } | null,
+  ) => void;
 }
 
-export function ComboBoxResponsive({ options, title, onChange }: ComboBoxResponsiveProps) {
+export function ComboBoxResponsive({
+  options,
+  title,
+  onChange,
+}: ComboBoxResponsiveProps) {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
-  const [selectedStatus, setSelectedStatus] = useState<{ value: string; label: string } | null>(null);
+  const [selectedStatus, setSelectedStatus] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
 
   const handleSelect = (value: string) => {
     const isCurrentlySelected = selectedStatus?.value === value;
-    const newStatus = isCurrentlySelected ? null : options.find((selection) => selection.value === value) || null;
+    const newStatus = isCurrentlySelected
+      ? null
+      : options.find((selection) => selection.value === value) || null;
     setSelectedStatus(newStatus);
     onChange(newStatus ? newStatus.value : null);
     setOpen(false);
@@ -53,12 +60,21 @@ export function ComboBoxResponsive({ options, title, onChange }: ComboBoxRespons
     return (
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            className="w-1/6 justify-start bg-background text-foreground m-2"
-          >
-            {selectedStatus ? <>{selectedStatus.label}</> : <>+ {title}</>}
-          </Button>
+          {selectedStatus ? (
+            <Button
+              variant="secondary"
+              className="w-1/6 justify-start text-foreground m-2"
+            >
+              {selectedStatus.label}
+            </Button>
+          ) : (
+            <Button
+              variant="outline"
+              className="w-1/6 justify-start bg-background text-foreground m-2"
+            >
+              + {title}
+            </Button>
+          )}
         </PopoverTrigger>
         <PopoverContent className="w-full p-0" align="start">
           <StatusList
