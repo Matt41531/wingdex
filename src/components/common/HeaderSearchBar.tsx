@@ -184,23 +184,23 @@ function HeaderSearchBar() {
       <ComboBoxResponsive
         options={habitat}
         title="Habitat"
-        onChange={(value: string) => handleFilterChange("habitat", value)}
+        onChange={(value: string | null) => handleFilterChange("habitat", value || "")}
       />
       <ComboBoxResponsive
         options={food}
         title="Food"
-        onChange={(value: string) => handleFilterChange("food", value)}
+        onChange={(value: string | null) => handleFilterChange("food", value || "")}
       />
       <ComboBoxResponsive
         options={eggCount}
         title="Egg Count"
-        onChange={(value: string) => handleFilterChange("eggCount", value)}
+        onChange={(value: string | null) => handleFilterChange("eggCount", value || "")}
       />
 
       <ComboBoxResponsive
         options={victoryPoints}
         title="Victory Points"
-        onChange={(value: string) => handleFilterChange("victoryPoints", value)}
+        onChange={(value: string | null) => handleFilterChange("victoryPoints", value || "")}
       />
     </>
   );
