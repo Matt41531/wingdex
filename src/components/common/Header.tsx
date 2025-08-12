@@ -23,7 +23,7 @@ function Header() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+             {/*<BreadcrumbLink href="/">Home</BreadcrumbLink> */}
             </BreadcrumbItem>
             {breadcrumbs.map((breadcrumb) => {
               return (
@@ -40,7 +40,7 @@ function Header() {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <div className="flex flex-1 items-center justify-center max-w-1/2">
+      <div className="flex flex-1 items-center justify-center lg:max-w-1/2">
         <HeaderSearchBar />
       </div>
     </header>
